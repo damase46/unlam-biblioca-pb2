@@ -5,6 +5,8 @@ import com.unlam.library.interfaces.Storable;
 import com.unlam.library.utils.Sequence;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class BookService implements Storable<Book> {
@@ -19,7 +21,7 @@ public class BookService implements Storable<Book> {
     }
 
     @Override
-    public Book save(Book object) {
+    public Book upsert(Book object) {
         return null;
     }
 
@@ -29,8 +31,18 @@ public class BookService implements Storable<Book> {
     }
 
     @Override
-    public Boolean findAll(Book object) {
+    public Boolean deleteBy(Long id) {
         return null;
+    }
+
+    @Override
+    public List<Book> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Book> findById(Long id) {
+        return Optional.empty();
     }
 
     public static BookService getInstance() {

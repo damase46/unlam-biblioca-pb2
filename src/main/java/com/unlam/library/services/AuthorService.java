@@ -6,6 +6,7 @@ import com.unlam.library.interfaces.Storable;
 import com.unlam.library.utils.Sequence;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -21,8 +22,8 @@ public class AuthorService implements Storable<Author> {
     }
 
     @Override
-    public Author save(Author object) {
-        Person person = PersonService.getInstance().save(object);
+    public Author upsert(Author object) {
+        Person person = PersonService.getInstance().upsert(object);
         Author author = new Author(sequence.getSequence(), person);
 
         authors.add(author);
@@ -36,10 +37,19 @@ public class AuthorService implements Storable<Author> {
     }
 
     @Override
-    public Boolean findAll(Author object) {
+    public Boolean deleteBy(Long id) {
         return null;
     }
 
+    @Override
+    public List<Author> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Author> findById(Long id) {
+        return Optional.empty();
+    }
 
     public Author findByIdentification(Long identification) {
         Person person = PersonService.getInstance().findByIdentification(identification);

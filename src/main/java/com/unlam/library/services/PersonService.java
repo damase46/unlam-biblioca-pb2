@@ -5,6 +5,8 @@ import com.unlam.library.interfaces.Storable;
 import com.unlam.library.utils.Sequence;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class PersonService implements Storable<Person> {
@@ -19,7 +21,7 @@ public class PersonService implements Storable<Person> {
     }
 
     @Override
-    public Person save(Person object) {
+    public Person upsert(Person object) {
         return null;
     }
 
@@ -29,12 +31,23 @@ public class PersonService implements Storable<Person> {
     }
 
     @Override
-    public Boolean findAll(Person object) {
+    public Boolean deleteBy(Long id) {
         return null;
     }
 
-    public Person findByIdentification(Long identification) {
-        return new Person();
+    @Override
+    public List<Person> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Person> findById(Long id) {
+        return Optional.empty();
+    }
+
+    public Optional<Person> findByIdentification(Long identification) {
+        // TODO implement
+        return Optional.ofNullable(new Person());
     }
 
     public static PersonService getInstance() {
