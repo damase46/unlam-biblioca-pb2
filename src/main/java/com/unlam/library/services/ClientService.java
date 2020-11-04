@@ -4,6 +4,8 @@ import com.unlam.library.domain.Client;
 import com.unlam.library.interfaces.Storable;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class ClientService implements Storable<Client> {
@@ -16,7 +18,7 @@ public class ClientService implements Storable<Client> {
     }
 
     @Override
-    public Client save(Client object) {
+    public Client upsert(Client object) {
         return null;
     }
 
@@ -26,8 +28,23 @@ public class ClientService implements Storable<Client> {
     }
 
     @Override
-    public Boolean findAll(Client object) {
+    public Boolean deleteBy(Long id) {
         return null;
+    }
+
+    @Override
+    public List<Client> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Client> findById(Long id) {
+        return Optional.empty();
+    }
+
+    public Optional<Client> findByIdentification(Long identification) {
+        // TODO implement
+        return Optional.ofNullable(new Client());
     }
 
     public static ClientService getInstance() {
