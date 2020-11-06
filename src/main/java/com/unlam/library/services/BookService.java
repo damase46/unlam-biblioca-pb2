@@ -22,7 +22,8 @@ public class BookService implements Storable<Book> {
 
     @Override
     public Book upsert(Book object) {
-        return null;
+        as
+    	return null;
     }
 
     @Override
