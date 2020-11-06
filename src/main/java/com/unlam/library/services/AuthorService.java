@@ -52,15 +52,15 @@ public class AuthorService implements Storable<Author> {
     }
 
     public Author findByIdentification(Long identification) {
-        Person person = PersonService.getInstance().findByIdentification(identification);
+        Optional<Person> person = PersonService.getInstance().findByIdentification(identification);
 
-        if(person != null && person.getId() != null) {
+        if(person.isPresent() && person.get().getId() != null) {
             Optional<Author> author = authors.stream()
-                    .filter(a -> a.getId().equals(person.getId()))
+                    .filter(a -> a.getId().equals(person.get().getId()))
                     .findFirst();
 
-            return author
-                    .map(value -> value.updatePerson(person))
+            return (Author) author
+                    .map(value -> value.updatePerson(person.get()))
                     .orElse(null);
         }
 

@@ -16,6 +16,14 @@ public class Person {
         this.identification = person.identification;
     }
 
+    public Person updatePerson(Person person) {
+        this.id = person.getId();
+        this.name = person.getName();
+        this.lastName = person.getLastName();
+        this.identification = person.getIdentification();
+        return this;
+    }
+
     public Long getId() {
         return id;
     }
