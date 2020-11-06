@@ -13,12 +13,4 @@ public class Author extends Person {
         super(person);
         this.authorId = sequence;
     }
-
-    public Author updatePerson(Person person) {
-        this.id = person.getId();
-        this.name = person.getName();
-        this.lastName = person.getLastName();
-        this.identification = person.getIdentification();
-        return this;
-    }
 }
