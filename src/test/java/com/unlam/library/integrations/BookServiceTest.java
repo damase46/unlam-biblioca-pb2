@@ -1,5 +1,7 @@
 package com.unlam.library.integrations;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Date;
 
 import org.junit.Test;
@@ -14,7 +16,17 @@ public class BookServiceTest {
 
     @Test
     public void save_book() {
-
+    	Author author=new Author();
+    	Editorial editorial=new Editorial();
+		Date publicationDate=new Date(); 	
+    	Book book=  new Book("Eragon 1", author, Gender.FANTASY,publicationDate, editorial);
+    	Book book1=  new Book("Eragon 2", author, Gender.FANTASY,publicationDate, editorial);
+    	BookService bookService=BookService.getInstance();
+    
+    	bookService.upsert(book);
+    	Book addBook=bookService.upsert(book1);
+    	
+    	assertEquals(book1,addBook);
     }
 
     @Test

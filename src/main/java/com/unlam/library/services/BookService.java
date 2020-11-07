@@ -26,6 +26,7 @@ public class BookService implements Storable<Book> {
     	if(object!=null && object.getId()==null) {
     		object.setId(sequence.getSequence());
     		books.add(object);
+    		return object;
     	}
     	else if(object!=null && object.getId()!=null){
     		deleteBy(object.getId());
