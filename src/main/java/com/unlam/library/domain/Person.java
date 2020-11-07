@@ -5,7 +5,7 @@ public class Person {
     protected Long id;
     protected String name;
     protected String lastName;
-    protected Long identification;
+    protected Integer identification;
 
     public Person() { }
 
@@ -40,11 +40,39 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Long getIdentification() {
+    public Integer getIdentification() {
         return identification;
     }
 
-    public void setIdentification(Long identification) {
-        this.identification = identification;
+    public void setIdentification(Integer i) {
+        this.identification = i;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((identification == null) ? 0 : identification.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		if (identification == null) {
+			if (other.identification != null)
+				return false;
+		} else if (!identification.equals(other.identification))
+			return false;
+		return true;
+	}
+    
+    
+    
 }

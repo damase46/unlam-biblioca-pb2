@@ -3,7 +3,7 @@ package com.unlam.library.domain;
 public class Author extends Person {
 
     private Long authorId;
-    private Status status;
+    private StatusEmployee status;
 
     public Author() {
         super();

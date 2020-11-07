@@ -4,7 +4,7 @@ import com.unlam.library.domain.Book;
 import com.unlam.library.domain.BookRental;
 import com.unlam.library.domain.Client;
 import com.unlam.library.domain.Employee;
-import com.unlam.library.domain.Status;
+import com.unlam.library.domain.StatusEmployee;
 import com.unlam.library.domain.StatusBookRental;
 import com.unlam.library.interfaces.Storable;
 import com.unlam.library.utils.Sequence;
@@ -31,7 +31,7 @@ public class BookRentalService implements Storable<BookRental> {
     public List<Book> getAllBooksBorrowed() {
         return bookRentals.stream()
                 .filter(bookRental -> !bookRental.getStatusRental().equals(StatusBookRental.RETURNED) &&
-                        bookRental.getStatus().equals(Status.ENABLED))
+                        bookRental.getStatus().equals(StatusEmployee.ENABLED))
                 .map(bookRental ->
                     bookRental.getBooks().stream()
                             .map(book -> BookService.getInstance().findById(book.getId()))
@@ -102,7 +102,7 @@ public class BookRentalService implements Storable<BookRental> {
 
         Date returnDate = calReturnDate.getTime();
 
-        return new BookRental(books, client, StatusBookRental.IN_TIME, returnDate, employee, Status.ENABLED);
+        return new BookRental(books, client, StatusBookRental.IN_TIME, returnDate, employee, StatusEmployee.ENABLED);
     }
 
     private boolean isInvalidStock(List<Book> books) {
@@ -154,7 +154,7 @@ public class BookRentalService implements Storable<BookRental> {
             return false;
         }
 
-        bookRental.get().setStatus(Status.DISABLED);
+        bookRental.get().setStatus(StatusEmployee.DISABLED);
         return true;
     }
 

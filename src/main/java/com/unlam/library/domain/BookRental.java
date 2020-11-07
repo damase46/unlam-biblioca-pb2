@@ -11,12 +11,12 @@ public class BookRental {
     private StatusBookRental statusRental;
     private Date returnDate;
     private Employee employee;
-    private Status status;
+    private StatusEmployee status;
 
     public BookRental() {
     }
 
-    public BookRental(List<Book> books, Client client, StatusBookRental statusRental, Date returnDate, Employee employee, Status status) {
+    public BookRental(List<Book> books, Client client, StatusBookRental statusRental, Date returnDate, Employee employee, StatusEmployee status) {
         this.books = books;
         this.client = client;
         this.statusRental = statusRental;
@@ -73,11 +73,11 @@ public class BookRental {
         this.statusRental = statusRental;
     }
 
-    public Status getStatus() {
+    public StatusEmployee getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusEmployee status) {
         this.status = status;
     }
 }
