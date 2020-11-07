@@ -30,7 +30,8 @@ public class BookService implements Storable<Book> {
     	}
     	else if(object!=null && object.getId()!=null){
     		deleteBy(object.getId());
-    		upsert(object);
+    		books.add(object);
+    		return object;
     	}
     	return null;
     }
@@ -55,7 +56,7 @@ public class BookService implements Storable<Book> {
     @Override
     public List<Book> findAll() {
         List<Book>aux= new ArrayList<Book>();
-        	aux.addAll(books);
+        	aux.addAll(books);   	
     	return aux;
     }
 
