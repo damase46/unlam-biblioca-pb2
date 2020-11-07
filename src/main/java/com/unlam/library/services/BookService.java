@@ -46,8 +46,7 @@ public class BookService implements Storable<Book> {
     @Override
     public Boolean deleteBy(Long id) {
 			if(findById(id).get()!=null) {
-				Optional<Book> aux= findById(id);
-				return books.remove(aux.get());
+				return books.remove(findById(id).get());
 			}
 
         return false;
