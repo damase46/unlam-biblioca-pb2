@@ -15,8 +15,7 @@ public class BookService implements Storable<Book> {
     private static BookService bookService;
     private Set<Book> books;
     private Sequence sequence;
-	private Optional<Book> aux;
-
+	
     private BookService() {
         books = new HashSet<Book>();
         sequence = new Sequence();
@@ -24,6 +23,14 @@ public class BookService implements Storable<Book> {
 
     @Override
     public Book upsert(Book object) {
+    	if(object!=null && object.getId()==null) {
+    		object.setId(sequence.getSequence());
+    		books.add(object);
+    	}
+    	else if(object!=null && object.getId()!=null){
+    		deleteBy(object.getId());
+    		upsert(object);
+    	}
     	return null;
     }
 
