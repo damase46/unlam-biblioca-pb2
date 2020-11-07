@@ -1,7 +1,11 @@
 package com.unlam.library.integrations;
 
+
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
@@ -41,7 +45,27 @@ public class BookServiceTest {
 
     @Test
     public void delete_book() {
-        // TODO implement
+       	Author author=new Author();
+    	Editorial editorial=new Editorial();
+		Date publicationDate=new Date(); 	
+    	Book book=  new Book("Eragon 1", author, Gender.FANTASY,publicationDate, editorial);
+    	Book book1=  new Book("Eragon 2", author, Gender.FANTASY,publicationDate, editorial);
+    	Book book2=  new Book("Eragon 3", author, Gender.FANTASY,publicationDate, editorial);   	
+    	BookService bookService=BookService.getInstance();
+    
+    	bookService.upsert(book);
+    	bookService.upsert(book1);
+    	bookService.upsert(book2);
+    	
+    	Boolean deleteBook=bookService.delete(book);
+    	Boolean deleteBookId=bookService.deleteBy(2l);
+    	Boolean deleteBookNotId=bookService.deleteBy(2l);    	
+    	Boolean deleteBookNull=bookService.delete(null);
+    	
+    	assertTrue(deleteBook);
+    	assertTrue(deleteBookId);
+    	assertFalse(deleteBookNotId);
+    	assertFalse(deleteBookNull);
     }
 
     @Test
