@@ -22,20 +22,16 @@ public class BookServiceTest {
 		Date publicationDate=new Date(); 	
     	Book book=  new Book("Eragon 1", author, Gender.FANTASY,publicationDate, editorial);
     	Book book1=  new Book("Eragon 2", author, Gender.FANTASY,publicationDate, editorial);
-    	Book bookUpdate=  new Book("Eragon 3", author, Gender.FANTASY,publicationDate, editorial);
-    	
+
     	BookService bookService=BookService.getInstance();
     
     	Book addBook=bookService.upsert(book);
     	Book addBook1=bookService.upsert(book1);
     	Book addBookNull=bookService.upsert(null);
-    	bookService.upsert(bookUpdate);
-    	bookUpdate.setId(0l);
     	
     	assertEquals(book,addBook);    	
     	assertEquals(book1,addBook1);
     	assertNull(addBookNull);
-    	assertEquals(bookUpdate.getName(),bookService.findById(0l).get().getName());
     }
 
     @Test
@@ -50,7 +46,20 @@ public class BookServiceTest {
 
     @Test
     public void update_book() {
-        // TODO implement
+       	Author author=new Author();
+    	Editorial editorial=new Editorial();
+		Date publicationDate=new Date(); 	
+    	Book book=  new Book("Eragon 1", author, Gender.FANTASY,publicationDate, editorial);
+    	Book book1=  new Book("Eragon 2", author, Gender.FANTASY,publicationDate, editorial);
+    	Book bookUpdate=  new Book("Eragon 3", author, Gender.FANTASY,publicationDate, editorial);   	
+    	BookService bookService=BookService.getInstance();
+    
+    	bookService.upsert(book);
+    	bookService.upsert(book1);
+    	bookService.upsert(bookUpdate);
+    	bookUpdate.setId(0l);
+    	
+    	assertEquals(bookUpdate.getName(),bookService.findById(0l).get().getName());
     }
 
     @Test
