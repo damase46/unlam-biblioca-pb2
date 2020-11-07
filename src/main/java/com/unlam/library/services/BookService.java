@@ -24,7 +24,6 @@ public class BookService implements Storable<Book> {
 
     @Override
     public Book upsert(Book object) {
-        
     	return null;
     }
 
@@ -33,13 +32,12 @@ public class BookService implements Storable<Book> {
         if(object!=null) {
         	return books.remove(object);
         }
-    	
     	return false;
     }
 
     @Override
     public Boolean deleteBy(Long id) {
-			if(findById(id)!=null) {
+			if(findById(id).get()!=null) {
 				Optional<Book> aux= findById(id);
 				return books.remove(aux.get());
 			}
