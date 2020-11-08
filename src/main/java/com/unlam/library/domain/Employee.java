@@ -4,27 +4,20 @@ package com.unlam.library.domain;
 
 public class Employee extends Person {
 
-    private Integer employeeId;
-    private StatusEmployee status;
+    private Long employeeId;
+    private Status status;
     
     
-    
-   
-	public Employee(Integer i) {
-		super();
-		this.employeeId = i;
-		
-	}
-	public 	Integer getEmployeeId() {
+    public 	Long getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
-	public StatusEmployee getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(StatusEmployee status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	

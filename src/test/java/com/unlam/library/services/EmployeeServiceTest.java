@@ -27,7 +27,7 @@ public class EmployeeServiceTest {
 		
 		
 		
-		Employee employee1 = new Employee(1);
+		Employee employee1 = new Employee();
 		employee1.setName("Juan");
 		
 		service.save(employee1);
@@ -48,7 +48,7 @@ public class EmployeeServiceTest {
 		
 		
 		
-		Employee employee1 = new Employee(1);
+		Employee employee1 = new Employee();
 		employee1.setName("Juan");
 		
 		service.save(employee1);
@@ -69,16 +69,16 @@ EmployeeService service =  EmployeeService.getInstance();
 		
 		
 		
-		Employee employee1 = new Employee(1);
+		Employee employee1 = new Employee();
 		employee1.setName("Juan");
 		
-		Employee employee2 = new Employee(2);
+		Employee employee2 = new Employee();
 		employee1.setName("Juan");
 		
-		Employee employee3 = new Employee(3);
+		Employee employee3 = new Employee();
 		employee1.setName("Juan");
 		
-		Employee employee4 = new Employee(4);
+		Employee employee4 = new Employee();
 		employee1.setName("Juan");
 		
 		service.save(employee1);
