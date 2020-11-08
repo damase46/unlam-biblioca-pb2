@@ -70,6 +70,10 @@ public class BookService implements Storable<Book> {
     	return Optional.empty();
     }
 
+    public void cleanBooks() {
+        books = new HashSet<Book>();
+    }
+
     public static BookService getInstance() {
         return bookService = bookService == null ? new BookService() : bookService;
     }

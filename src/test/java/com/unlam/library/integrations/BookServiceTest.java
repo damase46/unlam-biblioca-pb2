@@ -1,25 +1,27 @@
 package com.unlam.library.integrations;
 
+import com.unlam.library.domain.Author;
+import com.unlam.library.domain.Book;
+import com.unlam.library.domain.Editorial;
+import com.unlam.library.domain.Gender;
+import com.unlam.library.services.BookService;
+import org.junit.Before;
+import org.junit.Test;
 
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.junit.Test;
-
-import com.unlam.library.domain.Author;
-import com.unlam.library.domain.Book;
-import com.unlam.library.domain.Editorial;
-import com.unlam.library.domain.Gender;
-import com.unlam.library.services.BookService;
-
 public class BookServiceTest {
+
+	@Before
+	public void setup() {
+		BookService bookService = BookService.getInstance();
+		bookService.cleanBooks();
+	}
 
     @Test
     public void save_book() {
@@ -103,9 +105,6 @@ public class BookServiceTest {
     	assertEquals(bookUpdate.getName(),bookService.findById(0l).get().getName());
     }
 
-    
-    
-
     @Test
     public void findAll_books() {
        	Author author=new Author();
@@ -122,24 +121,7 @@ public class BookServiceTest {
     	bookService.upsert(book2);
     	bookService.upsert(book3);
     	
-    	List<Book> books=new ArrayList<Book>();
-    	books.add(book);
-    	book.setId(0l);
-    	books.add(book1);
-    	book.setId(1l);
-    	books.add(book2);
-    	book.setId(2l);
-    	books.add(book3);
-    	book.setId(3l);
-    	
-    	assertEquals(bookService.findAll().size(),books.size());
+    	assertEquals(bookService.findAll().size(),4);
     
     }
-
-
-    
-    
-    
-    
-    
 }
