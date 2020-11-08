@@ -7,6 +7,22 @@ public class Client extends Person {
     private Long clientId;
     private Date created_at;
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    private Status status;
+
+    public Client(Long clientId,Date created_at) {
+        super();
+        this.clientId=clientId;
+        this.created_at=created_at;
+    }
+
     public Long getClientId() {
         return clientId;
     }

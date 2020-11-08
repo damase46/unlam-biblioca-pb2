@@ -68,7 +68,7 @@ public class BookRentalService implements Storable<BookRental> {
 
     public BookRental returnBooksByBookRentalId(Long id) {
         Optional<BookRental> bookRental = findById(id);
-
+            bookRental.get();
         if(!bookRental.isPresent()) {
             System.out.println("[BookRentalService] Error in returnBooksByBookRentalId, id not found");
             return null;
