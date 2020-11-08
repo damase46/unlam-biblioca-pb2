@@ -6,6 +6,7 @@ public class Person {
     protected String name;
     protected String lastName;
     protected Long identification;
+    private Status status;
 
     public Person() { }
 
@@ -54,5 +55,13 @@ public class Person {
 
     public void setIdentification(Long identification) {
         this.identification = identification;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }
