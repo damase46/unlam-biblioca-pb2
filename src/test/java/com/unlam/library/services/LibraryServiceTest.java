@@ -1,27 +1,23 @@
 package com.unlam.library.services;
 
-import static org.junit.Assert.assertArrayEquals;
+import org.junit.Before;
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.unlam.library.services.LibraryService;
-
-
 public class LibraryServiceTest {
+
+	private LibraryService libraryService;
 
 	@Before
 	public void setup() {
-		LibraryService libraryService= LibraryService.getInstance();
-		libraryService.cleanStockBooks();
+		libraryService = LibraryService.resetService();
 	}
 
 	@Test
 	public void addStockByBookId() {
-		LibraryService libraryService= LibraryService.getInstance();
 		libraryService.addStockByBookId(0L);
 		libraryService.addStockByBookId(0L);
 		libraryService.addStockByBookId(0L);
@@ -35,7 +31,6 @@ public class LibraryServiceTest {
 	
 	@Test
 	public void getStockByBookId() {
-		LibraryService libraryService= LibraryService.getInstance();
 		libraryService.addStockByBookId(0L);
 		libraryService.addStockByBookId(0L);
 		libraryService.addStockByBookId(0L);
@@ -51,7 +46,6 @@ public class LibraryServiceTest {
 	
 	@Test
 	public void removeStockByBookId() {
-		LibraryService libraryService= LibraryService.getInstance();
 		libraryService.addStockByBookId(0L);
 		libraryService.addStockByBookId(0L);
 		libraryService.addStockByBookId(0L);
@@ -72,7 +66,6 @@ public class LibraryServiceTest {
 	
 	@Test	
 	public void cleanStockBooks() {
-		LibraryService libraryService= LibraryService.getInstance();
 		libraryService.addStockByBookId(1L);
 		libraryService.addStockByBookId(1L);
 		libraryService.addStockByBookId(1L);
@@ -81,7 +74,7 @@ public class LibraryServiceTest {
 		libraryService.addStockByBookId(7L);
 		
 		Long auxStock=libraryService.getStockByBookId(0L);
-		libraryService.cleanStockBooks();
+		libraryService = LibraryService.resetService();
 		
 		Long stock=0L;
 		assertEquals(stock,auxStock);	
