@@ -6,16 +6,11 @@ public class Client extends Person {
 
     private Long clientId;
     private Date created_at;
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     private Status status;
+
+    public Client() {
+
+    }
 
     public Client(Long clientId,Date created_at) {
         super();
@@ -37,5 +32,13 @@ public class Client extends Person {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

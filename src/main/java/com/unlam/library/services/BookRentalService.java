@@ -92,7 +92,7 @@ public class BookRentalService implements Storable<BookRental> {
             return null;
         }
 
-        if(books == null || books.isEmpty() || books.size() > 5 || !isInvalidStock(books)) {
+        if(books == null || books.isEmpty() || books.size() > 5 || isInvalidStock(books)) {
             System.out.println("[BookRentalService] Error in prepareOrder, Books is invalid");
             return null;
         }
@@ -128,8 +128,8 @@ public class BookRentalService implements Storable<BookRental> {
                     return book;
                 }).get();
             } else {
-                bookRentals.add(object);
-                return object;
+                System.out.println("[BookRentalService] id rental invalid");
+                return null;
             }
         }
     }
@@ -168,6 +168,10 @@ public class BookRentalService implements Storable<BookRental> {
         return bookRentals.stream()
                 .filter(book -> book.getId().equals(id))
                 .findFirst();
+    }
+
+    public static BookRentalService resetService() {
+        return bookRentalService = new BookRentalService();
     }
 
     public static BookRentalService getInstance() {

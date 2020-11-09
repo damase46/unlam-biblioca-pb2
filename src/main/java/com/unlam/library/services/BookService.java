@@ -15,7 +15,7 @@ public class BookService implements Storable<Book> {
     private static BookService bookService;
     private Set<Book> books;
     private Sequence sequence;
-	
+
     private BookService() {
         books = new HashSet<Book>();
         sequence = new Sequence();
@@ -70,8 +70,8 @@ public class BookService implements Storable<Book> {
     	return Optional.empty();
     }
 
-    public void cleanBooks() {
-        books = new HashSet<Book>();
+    public static BookService resetService() {
+        return bookService = new BookService();
     }
 
     public static BookService getInstance() {

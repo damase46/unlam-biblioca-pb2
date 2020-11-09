@@ -38,13 +38,12 @@ public class LibraryService {
     	}
     	return false;
     }
-    
-    public void cleanStockBooks() {
-    	stockBooks = new HashMap<>();
+
+    public static LibraryService resetService() {
+        return libraryService =  new LibraryService();
     }
-    
+
     public static LibraryService getInstance() {
         return libraryService = libraryService == null ? new LibraryService() : libraryService;
     }
 }
-
