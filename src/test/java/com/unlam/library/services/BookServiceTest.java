@@ -19,8 +19,7 @@ public class BookServiceTest {
 
 	@Before
 	public void setup() {
-		BookService bookService = BookService.getInstance();
-		bookService.cleanBooks();
+		BookService bookService = BookService.resetService();
 	}
 
     @Test

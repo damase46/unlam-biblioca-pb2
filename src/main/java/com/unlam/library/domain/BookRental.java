@@ -3,7 +3,7 @@ package com.unlam.library.domain;
 import java.util.Date;
 import java.util.List;
 
-public class BookRental {
+public class BookRental implements Cloneable{
 
     private Long id;
     private List<Book> books;
@@ -23,6 +23,11 @@ public class BookRental {
         this.returnDate = returnDate;
         this.employee = employee;
         this.status = status;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public Long getId() {
