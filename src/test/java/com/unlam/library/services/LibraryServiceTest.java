@@ -68,5 +68,24 @@ public class LibraryServiceTest {
 		assertFalse(auxFalse);
 		assertEquals(stock,auxStock);
 		
-	}	
+	}
+	
+	@Test	
+	public void cleanStockBooks() {
+		LibraryService libraryService= LibraryService.getInstance();
+		libraryService.addStockByBookId(1L);
+		libraryService.addStockByBookId(1L);
+		libraryService.addStockByBookId(1L);
+		libraryService.addStockByBookId(2L);
+		libraryService.addStockByBookId(5L);
+		libraryService.addStockByBookId(7L);
+		
+		Long auxStock=libraryService.getStockByBookId(0L);
+		libraryService.cleanStockBooks();
+		
+		Long stock=0L;
+		assertEquals(stock,auxStock);	
+	}
+	
+	
 }
