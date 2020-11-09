@@ -34,7 +34,17 @@ public class LibraryServiceTest {
 	@Test
 	public void getStockByBookId() {
 		LibraryService libraryService= LibraryService.getInstance();
-
+		libraryService.addStockByBookId(0L);
+		libraryService.addStockByBookId(0L);
+		libraryService.addStockByBookId(0L);
+		libraryService.addStockByBookId(2L);
+		libraryService.addStockByBookId(5L);
+		libraryService.addStockByBookId(7L);		
+		
+		Long aux=libraryService.getStockByBookId(7L);
+		Long stock=1L;
+		
+		assertEquals(stock,aux);
 	}
 	
 	@Test
