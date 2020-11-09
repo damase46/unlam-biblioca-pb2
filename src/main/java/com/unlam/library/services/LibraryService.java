@@ -27,24 +27,11 @@ public class LibraryService {
     }
 
     public Boolean removeStockByBookId(Long bookId) {
-        Long finalStock = 1L;
-    	if(stockBooks.containsKey(bookId)) {
-            finalStock =stockBooks.get(bookId) -1;
-            if(finalStock <0L) {
-            	finalStock = 0L;
-            }
-            stockBooks.put(bookId, finalStock);
-            return true;
-    	}
-    	return false;
+        //TODO implement
+        return true;
     }
-    
-    public void cleanStockBooks() {
-    	stockBooks = new HashMap<>();
-    }
-    
+
     public static LibraryService getInstance() {
         return libraryService = libraryService == null ? new LibraryService() : libraryService;
     }
 }
-
