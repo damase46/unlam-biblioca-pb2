@@ -8,7 +8,8 @@ public class Person {
     protected Long identification;
     private Status status;
 
-    public Person() { }
+    public Person() {
+    }
 
     public Person(Person person) {
         this.id = person.id;

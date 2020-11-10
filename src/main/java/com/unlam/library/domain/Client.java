@@ -17,6 +17,9 @@ public class Client extends Person {
 
     private Status status;
 
+    public Client (){
+
+    }
     public Client(Long clientId,Date created_at) {
         super();
         this.clientId=clientId;

@@ -30,7 +30,8 @@ public class PersonService implements Storable<Person> {
             object.setStatus(Status.ENABLED);
             persons.add(object);
             return object;
-        } else {
+        }else
+            {
             Optional<Person> personOptional = findById(object.getId());
 
             if(!personOptional.isPresent()) {
@@ -53,7 +54,6 @@ public class PersonService implements Storable<Person> {
             System.out.println("[PersonService] Error in delete, id not found");
             return false;
         }
-
         return deleteBy(object.getId());
     }
 
