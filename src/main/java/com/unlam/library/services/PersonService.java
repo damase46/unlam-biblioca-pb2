@@ -30,8 +30,7 @@ public class PersonService implements Storable<Person> {
             object.setStatus(Status.ENABLED);
             persons.add(object);
             return object;
-        }else
-            {
+        } else {
             Optional<Person> personOptional = findById(object.getId());
 
             if(!personOptional.isPresent()) {
