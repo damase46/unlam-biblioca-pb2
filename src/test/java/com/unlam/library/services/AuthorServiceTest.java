@@ -47,7 +47,16 @@ public class AuthorServiceTest {
 	@Test
 	public void delete() {
 		AuthorService authorService=AuthorService.getInstance();
-
+		Author author=new Author();
+		Author aux=authorService.upsert(author);
+		Boolean auxFalse=authorService.deleteBy(15l);
+		
+		assertEquals(Status.ENABLED,authorService.findById(aux.getId()).get().getStatus());
+		Boolean auxTrue=authorService.delete(aux);
+		
+		assertFalse(auxFalse);
+		assertTrue(auxTrue);
+		assertEquals(Status.DISABLED,authorService.findById(aux.getId()).get().getStatus());
 	}
 	@Test
 	public void deleteBy() {
