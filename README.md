@@ -23,10 +23,10 @@ El sistema debe poder cumplir con las siguientes funcionalidades:
 TBD
 
 ## Participantes
-- Franco Natanael Tomaino 
-- Zelaya Marcelo Andres 
-- Gonzalo Elias Fernandez
-- Sergio Cervera Billordo
+- Franco Natanael Tomaino  ---> Franco020202
+- Zelaya Marcelo Andres    ---> marcelo1995tate
+- Gonzalo Elias Fernandez  ---> Zaito18
+- Sergio Cervera Billordo  ---> damase46
 
 ## Environment
 - Java 1.8
