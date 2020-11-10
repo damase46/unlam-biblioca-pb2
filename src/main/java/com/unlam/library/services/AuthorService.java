@@ -2,9 +2,11 @@ package com.unlam.library.services;
 
 import com.unlam.library.domain.Author;
 import com.unlam.library.domain.Person;
+import com.unlam.library.domain.Status;
 import com.unlam.library.interfaces.Storable;
 import com.unlam.library.utils.Sequence;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -23,32 +25,56 @@ public class AuthorService implements Storable<Author> {
 
     @Override
     public Author upsert(Author object) {
-        Person person = PersonService.getInstance().upsert(object);
-        Author author = new Author(sequence.getSequence(), person);
-
-        authors.add(author);
-
-        return author;
+        if(object!=null && object.getId()==null) {        
+        	Person person = PersonService.getInstance().upsert(object);
+        	Author author = new Author(sequence.getSequence(), person);
+        	author.setStatus(Status.ENABLED);;
+        	authors.add(author);
+            return author;
+        }
+        else if(object!=null && findById(object.getId()).isPresent()) {
+        	authors.remove(object);
+        	authors.add(object);
+            return object;
+        }
+        return null;
     }
 
     @Override
     public Boolean delete(Author object) {
-        return null;
+        if(object!=null && object.getId()!=null) {
+        	return deleteBy(object.getId());
+        }
+    	return false;
     }
 
     @Override
-    public Boolean deleteBy(Long id) {
-        return null;
+    public Boolean deleteBy(Long id) {	
+    	if(findById(id).isPresent()) {
+    		Author aux=findById(id).get();
+    		aux.setStatus(Status.DISABLED);
+    		upsert(aux);
+    		return true;
+        }
+    	return false;
     }
 
     @Override
     public List<Author> findAll() {
-        return null;
+        List<Author>aux=new ArrayList<Author>();
+        aux.addAll(authors);
+    	return aux;
     }
 
     @Override
     public Optional<Author> findById(Long id) {
-        return Optional.empty();
+
+    	for (Author author : authors) {
+			if(author.getId().equals(id)) {
+				return Optional.ofNullable(author);
+			}
+		}
+    	return Optional.empty();
     }
 
     public Author findByIdentification(Long identification) {
@@ -65,6 +91,10 @@ public class AuthorService implements Storable<Author> {
         }
 
         return null;
+    }
+    
+    public void cleanAuthor() {
+        authors = new HashSet<Author>();
     }
 
     public static AuthorService getInstance() {
