@@ -41,7 +41,6 @@ public class AuthorServiceTest {
 		
 		assertEquals(Optional.empty(),authorService.findById(15l));
 		assertEquals(aux.getId(),authorService.findById(1l).get().getId());
-
 	}
 	
 	@Test
@@ -58,6 +57,7 @@ public class AuthorServiceTest {
 		assertTrue(auxTrue);
 		assertEquals(Status.DISABLED,authorService.findById(aux.getId()).get().getStatus());
 	}
+	
 	@Test
 	public void deleteBy() {
 		AuthorService authorService=AuthorService.getInstance();
@@ -84,8 +84,11 @@ public class AuthorServiceTest {
 		assertEquals(2l,authorService.findAll().size());
 	}
 	@Test
-	public void findByIdentification() {
+    public void findByIdentificationTest(){
 		AuthorService authorService=AuthorService.getInstance();
-
-	}
+		Author author=new Author();
+		author.setIdentification((long)123456);
+		authorService.upsert(author);
+        assertEquals(author.getIdentification(),authorService.findByIdentification((long)123456).getIdentification());
+    }
 }
