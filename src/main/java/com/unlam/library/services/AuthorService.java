@@ -1,7 +1,6 @@
 package com.unlam.library.services;
 
 import com.unlam.library.domain.Author;
-import com.unlam.library.domain.Book;
 import com.unlam.library.domain.Person;
 import com.unlam.library.domain.Status;
 import com.unlam.library.interfaces.Storable;
