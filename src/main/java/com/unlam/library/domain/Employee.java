@@ -3,6 +3,7 @@ package com.unlam.library.domain;
 public class Employee extends Person {
 
     private Long employeeId;
+    private String position;
     private Status status;
 
     public Employee() {
@@ -12,6 +13,14 @@ public class Employee extends Person {
         super();
         this.employeeId = employeeId;
         this.status = status;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public Long getEmployeeId() {
