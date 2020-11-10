@@ -5,7 +5,7 @@ package com.unlam.library.domain;
 public class Employee extends Person {
 
     private Long employeeId;
-    private Status status;
+    private Status statusEmployee;
     
     
     public 	Long getEmployeeId() {
