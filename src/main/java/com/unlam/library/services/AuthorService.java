@@ -2,6 +2,7 @@ package com.unlam.library.services;
 
 import com.unlam.library.domain.Author;
 import com.unlam.library.domain.Person;
+import com.unlam.library.domain.Status;
 import com.unlam.library.interfaces.Storable;
 import com.unlam.library.utils.Sequence;
 
@@ -34,13 +35,19 @@ public class AuthorService implements Storable<Author> {
 
     @Override
     public Boolean delete(Author object) {
-        
+        if(object!=null &&object.getId()!=null) {
+        	return deleteBy(object.getId());
+        }
     	return false;
     }
 
     @Override
-    public Boolean deleteBy(Long id) {
-        return null;
+    public Boolean deleteBy(Long id) {	
+    	if(findById(id).isPresent()) {
+    		findById(id).get().setStatus(Status.DISABLED);
+    		return true;
+        }
+    	return false;
     }
 
     @Override
