@@ -53,7 +53,6 @@ public class PersonService implements Storable<Person> {
             System.out.println("[PersonService] Error in delete, id not found");
             return false;
         }
-
         return deleteBy(object.getId());
     }
 

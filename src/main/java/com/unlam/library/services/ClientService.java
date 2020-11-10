@@ -1,4 +1,5 @@
 package com.unlam.library.services;
+import com.unlam.library.domain.Author;
 import com.unlam.library.domain.Client;
 import com.unlam.library.domain.Person;
 import com.unlam.library.domain.Status;
@@ -17,10 +18,9 @@ public class ClientService implements Storable<Client> {
         clients = new HashSet<Client>();
         sequence = new Sequence();
     }
-
+    
     @Override
     public Client upsert(Client object) {
-
         if (object.getClientId() == null) {
             object.setClientId(sequence.getSequence());
             object.setCreated_at(new Date());
@@ -29,7 +29,6 @@ public class ClientService implements Storable<Client> {
             object.updatePerson(person);
             clients.add(object);
             return object;
-
         } else {
             Optional<Client> clientOptional = findById(object.getClientId());
 
@@ -41,12 +40,9 @@ public class ClientService implements Storable<Client> {
             client.setStatus(object.getStatus());
             client.setCreated_at(object.getCreated_at());
             client.setClientId(object.getClientId());
-
             return client;
-
         }
     }
-
     @Override
     public Boolean delete(Client object) {
            if(object.getClientId()==null){
@@ -55,7 +51,7 @@ public class ClientService implements Storable<Client> {
            }
         return deleteBy(object.getClientId());
     }
-
+    
     @Override
     public Boolean deleteBy(Long id) {
         Optional<Client> client= findById(id);
@@ -66,12 +62,12 @@ public class ClientService implements Storable<Client> {
         client.get().setStatus(Status.DISABLED);
         return true;
     }
-
+    
     @Override
     public List<Client> findAll() {
         return new ArrayList(clients);
     }
-
+    
     @Override
     public Optional<Client> findById(Long id) {
         Client aux = null;
@@ -101,11 +97,11 @@ public class ClientService implements Storable<Client> {
         }
         return Optional.empty();
     }
-
+    
     public static ClientService getInstance() {
         return clientService = clientService == null ? new ClientService(): clientService;
     }
-
+    
     public void resetService() {
         sequence=new Sequence();
         clientService=new ClientService();
