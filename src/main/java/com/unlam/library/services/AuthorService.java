@@ -83,6 +83,7 @@ public class AuthorService implements Storable<Author> {
 
         return null;
     }
+    
     public void cleanAuthor() {
         authors = new HashSet<Author>();
     }

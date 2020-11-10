@@ -8,13 +8,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.unlam.library.domain.Author;
-import com.unlam.library.domain.Person;
 
 public class AuthorServiceTest {
 	@Before
 	public void setup() {
 		AuthorService authorService=AuthorService.getInstance();
 		authorService.cleanAuthor();
+		PersonService personService=PersonService.getInstance();
+		personService.resetService();
 	}
 	
 	@Test
@@ -32,9 +33,9 @@ public class AuthorServiceTest {
 	public void findById() {
 		AuthorService authorService=AuthorService.getInstance();
 		Author author=new Author();
-		
+		Author author1=new Author();
+		authorService.upsert(author1);
 		Author aux=authorService.upsert(author);
-		System.out.println(aux.getId());
 		
 		assertEquals(Optional.empty(),authorService.findById(15l));
 		assertEquals(aux.getId(),authorService.findById(1l).get().getId());
@@ -54,7 +55,13 @@ public class AuthorServiceTest {
 	@Test
 	public void findAll() {
 		AuthorService authorService=AuthorService.getInstance();
-
+		Author author=new Author();
+		authorService.upsert(author);
+		authorService.upsert(author);
+		authorService.upsert(author);
+		authorService.upsert(author);
+		
+		assertEquals(4l,authorService.findAll().size());
 	}
 	@Test
 	public void findByIdentification() {
