@@ -25,17 +25,24 @@ public class AuthorService implements Storable<Author> {
 
     @Override
     public Author upsert(Author object) {
-        Person person = PersonService.getInstance().upsert(object);
-        Author author = new Author(sequence.getSequence(), person);
-
-        authors.add(author);
-
-        return author;
+        if(object!=null && object.getId()==null) {        
+        	Person person = PersonService.getInstance().upsert(object);
+        	Author author = new Author(sequence.getSequence(), person);
+        	author.setStatus(Status.ENABLED);;
+        	authors.add(author);
+            return author;
+        }
+        else if(object!=null && findById(object.getId()).isPresent()) {
+        	authors.remove(object);
+        	authors.add(object);
+            return object;
+        }
+        return null;
     }
 
     @Override
     public Boolean delete(Author object) {
-        if(object!=null &&object.getId()!=null) {
+        if(object!=null && object.getId()!=null) {
         	return deleteBy(object.getId());
         }
     	return false;
@@ -44,7 +51,9 @@ public class AuthorService implements Storable<Author> {
     @Override
     public Boolean deleteBy(Long id) {	
     	if(findById(id).isPresent()) {
-    		findById(id).get().setStatus(Status.DISABLED);
+    		Author aux=findById(id).get();
+    		aux.setStatus(Status.DISABLED);
+    		upsert(aux);
     		return true;
         }
     	return false;

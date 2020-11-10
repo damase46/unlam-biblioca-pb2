@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.unlam.library.domain.Author;
+import com.unlam.library.domain.Status;
 
 public class AuthorServiceTest {
 	@Before
@@ -34,6 +35,7 @@ public class AuthorServiceTest {
 		AuthorService authorService=AuthorService.getInstance();
 		Author author=new Author();
 		Author author1=new Author();
+
 		authorService.upsert(author1);
 		Author aux=authorService.upsert(author);
 		
@@ -50,18 +52,27 @@ public class AuthorServiceTest {
 	@Test
 	public void deleteBy() {
 		AuthorService authorService=AuthorService.getInstance();
-
+		Author author=new Author();
+		Author aux=authorService.upsert(author);
+		Boolean auxFalse=authorService.deleteBy(15l);
+		
+		assertEquals(Status.ENABLED,authorService.findById(aux.getId()).get().getStatus());
+		Boolean auxTrue=authorService.deleteBy(aux.getId());
+		
+		assertFalse(auxFalse);
+		assertTrue(auxTrue);
+		assertEquals(Status.DISABLED,authorService.findById(aux.getId()).get().getStatus());
 	}
 	@Test
 	public void findAll() {
 		AuthorService authorService=AuthorService.getInstance();
 		Author author=new Author();
-		authorService.upsert(author);
-		authorService.upsert(author);
-		authorService.upsert(author);
-		authorService.upsert(author);
+		Author author1=new Author();
 		
-		assertEquals(4l,authorService.findAll().size());
+		authorService.upsert(author);
+		authorService.upsert(author1);
+		
+		assertEquals(2l,authorService.findAll().size());
 	}
 	@Test
 	public void findByIdentification() {
