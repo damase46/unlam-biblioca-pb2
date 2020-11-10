@@ -5,6 +5,7 @@ import com.unlam.library.domain.Person;
 import com.unlam.library.interfaces.Storable;
 import com.unlam.library.utils.Sequence;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,8 @@ public class AuthorService implements Storable<Author> {
 
     @Override
     public Boolean delete(Author object) {
-        return null;
+        
+    	return false;
     }
 
     @Override
@@ -43,12 +45,20 @@ public class AuthorService implements Storable<Author> {
 
     @Override
     public List<Author> findAll() {
-        return null;
+        List<Author>aux=new ArrayList<Author>();
+        aux.addAll(authors);
+    	return aux;
     }
 
     @Override
     public Optional<Author> findById(Long id) {
-        return Optional.empty();
+
+    	for (Author author : authors) {
+			if(author.getId().equals(id)) {
+				return Optional.ofNullable(author);
+			}
+		}
+    	return Optional.empty();
     }
 
     public Author findByIdentification(Long identification) {
