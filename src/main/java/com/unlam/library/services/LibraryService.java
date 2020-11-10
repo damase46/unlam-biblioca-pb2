@@ -27,8 +27,20 @@ public class LibraryService {
     }
 
     public Boolean removeStockByBookId(Long bookId) {
-        //TODO implement
-        return true;
+        Long finalStock = 1L;
+    	if(stockBooks.containsKey(bookId)) {
+            finalStock =stockBooks.get(bookId) -1;
+            if(finalStock <0L) {
+            	finalStock = 0L;
+            }
+            stockBooks.put(bookId, finalStock);
+            return true;
+    	}
+    	return false;
+    }
+
+    public static LibraryService resetService() {
+        return libraryService =  new LibraryService();
     }
 
     public static LibraryService getInstance() {

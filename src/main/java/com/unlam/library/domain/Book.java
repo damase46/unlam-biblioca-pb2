@@ -11,10 +11,10 @@ public class Book {
     private Date publicationDate;
     private Editorial editorial;
     
-    
+    public Book() {
+    }
 
     public Book(String name, Author author, Gender gender, Date publicationDate, Editorial editorial) {
-		super();
 		this.name = name;
 		this.author = author;
 		this.gender = gender;
@@ -22,8 +22,6 @@ public class Book {
 		this.editorial = editorial;
 	}
 
-    
-    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -31,8 +29,6 @@ public class Book {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -50,8 +46,6 @@ public class Book {
 			return false;
 		return true;
 	}
-
-
 
 	public Long getId() {
         return id;
